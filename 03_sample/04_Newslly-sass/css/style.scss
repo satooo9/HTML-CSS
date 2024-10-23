@@ -45,6 +45,12 @@ body {
     color: $color-text;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
 
 
 /* header
@@ -55,6 +61,86 @@ body {
 
     &__inner {
         @include inner();
+    }
+}
+
+
+
+/* post
+--------------------------------------- */
+.post {
+    &__category {
+        margin-bottom: 10px;
+        color: $color-accent;
+        font-size: 12px;
+        font-style: oblique;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin-bottom: 15px;
+        color: $color-main;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: (23/18);
+    }
+}
+
+
+
+/* card
+--------------------------------------- */
+.card {
+    background-color: #fff;
+
+    &__body {
+        padding: 35px;
+    }
+
+    &__title {
+        margin-bottom: 15px;
+        color: $color-main;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: (23/18);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+
+/* time
+--------------------------------------- */
+.time {
+    margin-top: 20px;
+    padding-left: 26px;
+    color: $color-time;
+    font-size: 12px;
+    background: url(../images/icon_time.png) no-repeat left center;
+}
+
+
+/* btn
+--------------------------------------- */
+.btn {
+    display: block;
+    width: 160px;
+    margin-top: 25px;
+    margin-left: auto;
+    padding: 14px;
+    background-color: $color-accent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &--info {
+        background-color: $color-main;
     }
 }
 
@@ -85,6 +171,73 @@ body {
 }
 
 
+
+/* trending
+---------------------------------------- */
+.trending {
+    padding: 60px 0;
+    background-color: $color-bg;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        @include flex(flex-start, );
+    }
+
+    &__item {
+        width: (380/800)*100%;
+    }
+}
+
+
+
+/* news
+--------------------------------------- */
+.news {
+    padding: 60px 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__item {
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+/* discovery
+--------------------------------------- */
+.discovery {
+    padding: 60px 0;
+    background-color: $color-bg;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        @include flex();
+    }
+
+    &__item {
+        width: (240/800)*100%;
+    }
+}
 
 
 
