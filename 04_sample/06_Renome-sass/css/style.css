@@ -1,0 +1,76 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: #404040;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* header
+------------------------------------------- */
+.header {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: bold;
+  padding: 40px 0;
+}
+.header__inner {
+  max-width: 1200px;
+  width: 87.5%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__list {
+  display: flex;
+}
+.nav__item {
+  margin-left: 20px;
+}
+.nav__active {
+  color: #985E5B;
+}
+
+/* visual
+------------------------------------------- */
+.visual {
+  text-align: right;
+  color: #ffffff;
+  background-image: url(../images/pic_main.png);
+  background-repeat: no-repeat;
+  background-position: center cover;
+  padding: 400px 0 100px;
+}
+.visual__inner {
+  max-width: 1200px;
+  width: 87.5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.visual__title {
+  font-size: 42px;
+  line-height: 1.1904761905;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 800px) {
+  .visual__title {
+    font-size: 50px;
+    line-height: 1.2;
+  }
+}
+.visual__lead {
+  font-size: 18px;
+  letter-spacing: 1.2222222222;
+}
+/*# sourceMappingURL=style.css.map */
