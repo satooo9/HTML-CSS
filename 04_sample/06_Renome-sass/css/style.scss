@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 $color-text: #404040;
-$color-accent: #985E5B;
+$color-main: #985E5B;
+$color-accent: #EDEFF2;
 
 $breakpoints: (
     "tablet": "screen and (min-width: 640px)",
@@ -23,11 +24,22 @@ $breakpoints: (
     margin-right: auto;
 }
 
-@mixin flex-nav {
+@mixin flex-nav($a: center, $j: space-between) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin m-title-main() {
+    font-size: 18px;
+    line-height: (27/18);
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-bottom: 40px;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 15px;
 }
 
 
@@ -53,6 +65,7 @@ img {
     font-size: 12px;
     line-height: (18/12);
     font-weight: bold;
+    text-transform: uppercase;
 
     padding: 40px 0;
 
@@ -64,7 +77,7 @@ img {
 
 .nav {
     &__list {
-        display: flex;
+        @include flex-nav();
     }
 
     &__item {
@@ -72,7 +85,7 @@ img {
     }
 
     &__active {
-        color: $color-accent;
+        color: $color-main;
     }
 }
 
@@ -87,6 +100,7 @@ img {
     background-repeat: no-repeat;
     background-position: center cover;
 
+    margin-bottom: 100px;
     padding: 400px 0 100px;
 
     &__inner {
@@ -109,5 +123,198 @@ img {
     &__lead {
         font-size: 18px;
         letter-spacing: (22/18);
+    }
+}
+
+
+
+/* contents
+------------------------------------------- */
+.contents {
+    &__inner {
+        @include m-inner();
+
+        @include m-query(desktop) {
+            @include flex-nav(flex-start, );
+        }
+    }
+}
+
+
+
+/* --- services --- */
+.services {
+    margin-bottom: 100px;
+
+    @include m-query(desktop) {
+        width: (700/1200)*100%;
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__list {
+        @include m-query(tablet) {
+            @include flex-nav(stretch, );
+
+            margin-bottom: -80px;
+        }
+    }
+
+    &__item {
+        margin-bottom: 80px;
+
+        @include m-query(tablet) {
+            width: (330/700)*100%;
+
+            @include flex-nav();
+            flex-direction: column;
+        }
+    }
+}
+
+
+
+/* --- post --- */
+.post {
+    &__pic {
+        margin-bottom: 30px;
+    }
+
+    &__text {
+        margin-bottom: 50px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .btn {
+        margin-top: auto;
+
+        @include m-query(tablet) {
+            width: 100%;
+        }
+    }
+}
+
+
+
+/* --- btn --- */
+.btn {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    width: 300px;
+
+    color: #ffffff;
+    background-color: $color-main;
+
+    margin-top: 50px;
+    padding: 18px 0;
+}
+
+
+
+
+/* --- information --- */
+.information {
+    margin-bottom: 100px;
+
+    @include m-query(desktop) {
+        width: (400/1200)*100%;
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__item {
+        @include flex-nav(center, flex-start);
+        margin-top: 15px;
+    }
+
+    &__term {
+        font-weight: bold;
+        text-align: right;
+        width: 92px;
+
+        color: $color-main;
+
+        margin-right: 30px;
+        border-right: 2px solid;
+        border-bottom: 1px solid;
+        padding: 8px 12px;
+    }
+
+    &__desc {
+        flex: 1;
+        overflow-wrap: anywhere;
+    }
+}
+
+
+
+/* about
+------------------------------------------- */
+
+
+
+/* --- concept --- */
+.concept {
+    text-align: center;
+
+    margin-top: 60px;
+    margin-bottom: 100px;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        font-size: 42px;
+        line-height: (50/42);
+        font-weight: bold;
+    }
+
+    &__text {
+        font-size: 18px;
+        line-height: (36/18);
+
+        span {
+            display: inline-block;
+        }
+    }
+}
+
+
+
+
+/* footer
+------------------------------------------- */
+.footer {
+    padding: 40px 0;
+    background-color: #EDEFF2;
+
+    &__inner {
+        @include m-inner();
+        @include flex-nav(center, center);
+        flex-direction: column;
+
+        @include m-query(desktop) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__copy {
+        margin-top: 25px;
+        font-size: 12px;
+        line-height: (18/12);
+
+        @include m-query(desktop) {
+            margin-top: 0;
+        }
     }
 }
