@@ -2,7 +2,6 @@
 
 $color-text: #404040;
 $color-main: #985E5B;
-$color-accent: #EDEFF2;
 
 $breakpoints: (
     "tablet": "screen and (min-width: 640px)",
@@ -17,14 +16,14 @@ $breakpoints: (
     }
 }
 
-@mixin m-inner($mw: 1200px, $w: (560/640)*100%) {
-    max-width: $mw;
+@mixin m-inner($w: 90%, $mw: 1200px) {
     width: $w;
+    max-width: $mw;
     margin-left: auto;
     margin-right: auto;
 }
 
-@mixin flex-nav($a: center, $j: space-between) {
+@mixin m-flex($a: center, $j: space-between) {
     display: flex;
     flex-wrap: wrap;
     justify-content: $j;
@@ -32,24 +31,22 @@ $breakpoints: (
 }
 
 @mixin m-title-main() {
-    font-size: 18px;
-    line-height: (27/18);
-    font-weight: bold;
-    text-transform: uppercase;
-
     margin-bottom: 40px;
-    border-bottom: 1px solid #DDDDDD;
     padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: (27/18);
+    text-transform: uppercase;
 }
 
 
 body {
+    color: $color-text;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: (21/14);
     letter-spacing: (100em/1000);
-
-    color: $color-text;
 }
 
 img {
@@ -59,29 +56,60 @@ img {
 }
 
 
-/* header
-------------------------------------------- */
-.header {
-    font-size: 12px;
-    line-height: (18/12);
-    font-weight: bold;
-    text-transform: uppercase;
 
+/* header */
+.header {
     padding: 40px 0;
 
     &__inner {
         @include m-inner();
-        @include flex-nav();
+        @include m-flex();
     }
 }
 
+
+
+/* footer */
+.footer {
+    padding: 40px 0;
+    background-color: #EDEFF2;
+
+    &__inner {
+        @include m-inner();
+        @include m-flex(center, center);
+        flex-direction: column;
+
+        @include m-query(desktop) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__copy {
+        margin-top: 25px;
+        font-size: 12px;
+        line-height: (18/12);
+
+        @include m-query(desktop) {
+            margin-top: 0;
+        }
+    }
+}
+
+
+
+/* nav */
 .nav {
     &__list {
-        @include flex-nav();
+        @include m-flex();
     }
 
     &__item {
         margin-left: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: (18/12);
+        text-transform: uppercase;
     }
 
     &__active {
@@ -89,97 +117,26 @@ img {
     }
 }
 
-
-/* visual
-------------------------------------------- */
-.visual {
-    text-align: right;
-
-    color: #ffffff;
-    background-image: url(../images/pic_main.png);
-    background-repeat: no-repeat;
-    background-position: center cover;
-
-    margin-bottom: 100px;
-    padding: 400px 0 100px;
-
-    &__inner {
-        @include m-inner();
-    }
-
-    &__title {
-        font-size: 42px;
-        line-height: (50/42);
-        font-weight: bold;
-
-        margin-bottom: 20px;
-
-        @include m-query(desktop) {
-            font-size: 50px;
-            line-height: (60/50);
-        }
-    }
-
-    &__lead {
-        font-size: 18px;
-        letter-spacing: (22/18);
-    }
-}
-
-
-
-/* contents
-------------------------------------------- */
-.contents {
-    &__inner {
-        @include m-inner();
-
-        @include m-query(desktop) {
-            @include flex-nav(flex-start, );
-        }
-    }
-}
-
-
-
-/* --- services --- */
-.services {
-    margin-bottom: 100px;
-
-    @include m-query(desktop) {
-        width: (700/1200)*100%;
-    }
-
-    &__title {
-        @include m-title-main();
-    }
-
-    &__list {
-        @include m-query(tablet) {
-            @include flex-nav(stretch, );
-
-            margin-bottom: -80px;
-        }
-    }
-
-    &__item {
-        margin-bottom: 80px;
-
-        @include m-query(tablet) {
-            width: (330/700)*100%;
-
-            @include flex-nav();
-            flex-direction: column;
-        }
-    }
-}
-
-
-
-/* --- post --- */
 .post {
     &__pic {
         margin-bottom: 30px;
+        position: relative;
+    }
+
+    &__number {
+        display: inline-block;
+        background-color: $color-main;
+        color: #fff;
+        position: absolute;
+        top: (30/285)*100%;
+        left: (30/380)*100%;
+        width: (50/380)*100%;
+        // height: 50px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__text {
@@ -199,26 +156,108 @@ img {
     }
 }
 
-
-
-/* --- btn --- */
 .btn {
-    font-weight: bold;
-    text-align: center;
     display: block;
     width: 300px;
-
-    color: #ffffff;
-    background-color: $color-main;
-
     margin-top: 50px;
-    padding: 18px 0;
+    padding: 18px;
+    background-color: $color-main;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mobile {
+    @include m-query(tablet) {
+        display: none;
+    }
 }
 
 
 
+/* index.html
+-----------------------*/
 
-/* --- information --- */
+
+
+/* visual */
+.visual {
+    margin-bottom: 100px;
+    padding: 400px 0 100px;
+    background: url(../images/pic_main.png) no-repeat center / cover;
+    color: #fff;
+    text-align: right;
+
+    &__inner {
+        @include m-inner();
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 42px;
+        font-weight: bold;
+        line-height: (50/42);
+
+        @include m-query(desktop) {
+            font-size: 50px;
+            line-height: (60/50);
+        }
+    }
+
+    &__lead {
+        font-size: 18px;
+        line-height: (22/18);
+    }
+}
+
+
+
+/* contents */
+.contents {
+    &__inner {
+        @include m-inner();
+
+        @include m-query(desktop) {
+            @include m-flex(flex-start);
+        }
+    }
+}
+
+
+
+/* services */
+.services {
+    margin-bottom: 100px;
+
+    @include m-query(desktop) {
+        width: (700/1200)*100%;
+    }
+
+    &__title {
+        @include m-title-main();
+    }
+
+    &__list {
+        @include m-query(tablet) {
+            margin-bottom: -80px;
+            @include m-flex(stretch);
+        }
+    }
+
+    &__item {
+        margin-bottom: 80px;
+
+        @include m-query(tablet) {
+            width: (330/700)*100%;
+            @include m-flex();
+            flex-direction: column;
+        }
+    }
+}
+
+
+
+/* information */
 .information {
     margin-bottom: 100px;
 
@@ -231,21 +270,19 @@ img {
     }
 
     &__item {
-        @include flex-nav(center, flex-start);
+        @include m-flex(center, flex-start);
         margin-top: 15px;
     }
 
     &__term {
-        font-weight: bold;
-        text-align: right;
         width: 92px;
-
-        color: $color-main;
-
         margin-right: 30px;
+        padding: 8px 12px;
         border-right: 2px solid;
         border-bottom: 1px solid;
-        padding: 8px 12px;
+        color: $color-main;
+        font-weight: bold;
+        text-align: right;
     }
 
     &__desc {
@@ -256,29 +293,38 @@ img {
 
 
 
-/* about
-------------------------------------------- */
+/* about.html
+-----------------------*/
 
 
 
-/* --- concept --- */
+/* concept */
 .concept {
+    margin: 60px 0 100px;
     text-align: center;
-
-    margin-top: 60px;
-    margin-bottom: 100px;
 
     &__inner {
         @include m-inner();
     }
 
     &__title {
+        width: fit-content;
+        margin: 0 auto 60px;
+        padding-bottom: 15px;
+        border-bottom: 4px solid $color-main;
         font-size: 42px;
-        line-height: (50/42);
         font-weight: bold;
+        line-height: (50/42);
+
+        @include m-query(desktop) {
+            font-size: 50px;
+            line-height: (50/60);
+        }
     }
 
     &__text {
+        max-width: 754px;
+        margin: 0 auto;
         font-size: 18px;
         line-height: (36/18);
 
@@ -290,31 +336,40 @@ img {
 
 
 
-
-/* footer
-------------------------------------------- */
-.footer {
-    padding: 40px 0;
-    background-color: #EDEFF2;
+/* floor */
+.floor {
+    margin-bottom: 100px;
 
     &__inner {
         @include m-inner();
-        @include flex-nav(center, center);
-        flex-direction: column;
+    }
 
+    &__title {
+        @include m-title-main();
+    }
+
+    &__list {
         @include m-query(desktop) {
-            flex-direction: row;
-            justify-content: space-between;
+            @include m-flex(stretch);
+            margin-bottom: -80px;
         }
     }
 
-    &__copy {
-        margin-top: 25px;
-        font-size: 12px;
-        line-height: (18/12);
+    &__item {
+        margin-bottom: 80px;
 
         @include m-query(desktop) {
-            margin-top: 0;
+            width: (380/1200)*100%;
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 560 / 315;
+            object-fit: cover;
+
+            @include m-query(desktop) {
+                aspect-ratio: 380 / 285;
+            }
         }
     }
 }
