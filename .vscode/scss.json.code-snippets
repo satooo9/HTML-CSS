@@ -40,4 +40,13 @@
 			"}"
 		]
 	},
+	"Sass Function - rem": {
+		"prefix": "sass-rem",
+		"scope": "scss",
+		"body": [
+			"@function f-rem(\\$value){",
+    "	@return (\\$value/16)+rem;",
+			"}"
+		]
+	},
 }
